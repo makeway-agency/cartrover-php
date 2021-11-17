@@ -39,7 +39,7 @@ class Orders extends APIObject {
 	 * @return array
 	 */
 	public static function ViewOrder($api_user, $api_key, $cust_ref){
-		$endpoint = '/merchant/orders/'.$cust_ref;
+		$endpoint = '/merchant/orders/'.urlencode( $cust_ref );
 		return APIObject::make_api_call($api_user, $api_key, $endpoint);
 	}
 	

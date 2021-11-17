@@ -127,4 +127,16 @@ class cartrover {
 	public function GetProdInventory($sku){
 		return Merchant::GetProdInventory($this->api_user, $this->api_key, $sku);
 	}
+
+	/**
+	 * Return a list of orders
+	 * @param string $status status of orders to match. Can be one of the following:
+	 * 	new, at_wms, shipped, confirmed, error, canceled, new_or_at_wms, shipped_or_confirmed, any
+	 * @return array
+	 */
+	public function ListOrders( $status ){
+		return Merchant::ListOrders($this->api_user, $this->api_key, $status);
+	}
+
+	
 }

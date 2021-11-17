@@ -24,8 +24,20 @@ class Merchant extends APIObject {
 	 * @return array
 	 */
 	public static function GetProdInventory($api_user, $api_key, $sku){
-		$endpoint = '/merchant/inventory/'.$sku;
+		$endpoint = '/merchant/inventory/'.urlencode( $sku );
 		return APIObject::make_api_call($api_user, $api_key, $endpoint);
 	}
 	
+	/**
+	 * Return a list of orders, according to the status
+	 * @param string $api_user
+	 * @param string $api_key
+	 * @param string $status status of orders to match. Can be one of the following:
+	 * 	new, at_wms, shipped, confirmed, error, canceled, new_or_at_wms, shipped_or_confirmed, any
+	 * @return array
+	 */
+	public static function ListOrders($api_user, $api_key, $status ){
+		$endpoint = '/merchant/orders/list/' . $status; // no need to urlencode()
+		return APIObject::make_api_call($api_user, $api_key, $endpoint);
+	}
 }
